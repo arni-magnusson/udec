@@ -1,0 +1,563 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{generic}
+\begin{document}
+
+\begin{frame}
+  \title{\vspace{-2ex}\darkblue Statistical Analysis}
+  \author{\vspace{-16ex}\normalsize Arni Magnusson}
+  \date{\vspace{-3ex}
+    {\darkgreen\it Statistical Modeling in R}\\[0.5ex]
+    Universidad de Concepción\\[0.5ex]
+    19\h{0.2ex}--\h{0.1ex}23 January 2026}
+  \titlepage
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\darkblue Descriptive statistics}\\
+  \comment{mean, median, sd, loess}\\[4ex]
+  \textbf{\darkblue Significance tests}\\
+  \comment{t.test, chisq.test}\\[4ex]
+  \textbf{\darkblue Linear models}\\
+  \comment{lm, aov, glm}\\[4ex]
+  \textbf{\darkblue Examples}\\
+  \comment{t.test, aov, lm, chisq.test, glm}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Statistical functions}
+  \begin{tabular}{ll}
+    \verb|rivers          | & \verb|mtcars                     |\\
+    \hspace{13em}           &                                   \\
+    \verb|min(rivers)     | & \verb|cor(mtcars$hp, mtcars$disp)|\\
+    \verb|max(rivers)     | & \verb|cor(mtcars)                |\\
+    \verb|range(rivers)   |                                     \\
+    \verb|quantile(rivers)|                                     \\[3ex]
+    \verb|sum(rivers)     |                                     \\
+    \verb|mean(rivers)    |                                     \\
+    \verb|median(rivers)  |                                     \\[3ex]
+    \verb|sd(rivers)      |                                     \\
+    \verb|var(rivers)     |                                     \\
+  \end{tabular}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Loess smoother}
+\begin{lstlisting}
+plot(dist~speed, data=cars)
+
+
+lofit <- loess(dist~speed, data=cars)$fit
+
+
+lines(cars$speed, lofit, lwd=2, col="red")
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{t.test}
+\begin{semiverbatim}
+t.test(x1, x2)
+
+
+?t.test
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{chisq.test}
+\begin{semiverbatim}
+chisq.test(obs, exp)
+
+
+?chisq.test
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Linear regression}
+\begin{lstlisting}
+lm(formula, data)
+
+
+lm(y~x)
+
+lm(y~x1+x2)
+
+lm(dist~speed, data=cars)
+
+
+?lm
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Formula syntax}
+  \begin{tabular}{lll}
+    \blue\lstinline|~|
+    & is a function of                 & \lstinline|y ~ x              |\\[2ex]
+    \blue\lstinline|+|
+    & and                              & \lstinline|y ~ x1 + x2        |\\[2ex]
+    \blue\lstinline|:|
+    & interaction term                 & \lstinline|y ~ x1 + x2 + x1:x2|\\[2ex]
+    \blue\lstinline|*|
+    & both terms and their interaction & \lstinline|y ~ x1 * x2        |\\[2ex]
+    \blue\lstinline|-|
+    & but not this term                & \lstinline|y ~ x1 * x2 - x2   |\\[2ex]
+    \blue\lstinline|.|
+    & all terms, or update             & \lstinline|y ~ . + x3         |\\
+  \end{tabular}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Fix intercept or slope}
+  \begin{tabular}{ll}
+    \lstinline|lm(y ~ 1)|
+    & estimate intercept only, null model\\[3ex]
+    \lstinline|lm(y ~ -1 + x)|
+    & estimate slope, fix intercept at 0 \\[3ex]
+    \lstinline|lm(offset(y-3) ~  -1 + x)|
+    & estimate slope, fix intercept at 3 \\[3ex]
+    \lstinline|lm(y ~ offset(3*x))|
+    & estimate intercept, fix slope at 3 \\[7ex]
+    \lstinline|?formula|
+  \end{tabular}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{aov}
+\begin{semiverbatim}
+aov(formula, data)
+
+
+?aov
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{glm}
+\begin{semiverbatim}
+glm(formula, data, family, link)
+
+
+?glm
+?family
+\end{semiverbatim}
+  \vspace{2ex}
+  \begin{itemize}
+    \item[-] gaussian
+    \item[-] binomial
+    \item[-] poisson
+    \item[-] and more
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Modelling tools}
+  \begin{tabular}{ll}
+    {\tt\blue coef(model)}
+    & coefficient                      \\[0.2ex]
+    {\tt\blue predict(model)}
+    & predictions                      \\[0.2ex]
+    {\tt\blue fitted(model)}
+    & fitted values                    \\[0.2ex]
+    {\tt\blue residuals(model)}
+    & residuals                        \\[2ex]
+    {\tt\blue summary(model)}
+    & estimates, SE, $p$ values, $R^2$ \\[0.2ex]
+    {\tt\blue anova(model)}
+    & $p$ values                       \\[0.2ex]
+    {\tt\blue AIC(model)}
+    & AIC value                        \\[2ex]
+    {\tt\blue update(model, formula)}
+    & modify                           \\[0.2ex]
+    {\tt\blue add1(model, candidates)}
+    & add one term                     \\[0.2ex]
+    {\tt\blue drop1(model, candidates)}
+    & drop one term                    \\[0.2ex]
+    {\tt\blue step(model, candidates)}
+    & add and drop iteratively         \\[2ex]
+  \end{tabular}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Chick weights (t.test)}
+\begin{semiverbatim}
+chick2 <- split(chickwts$weight,
+                chickwts$feed)[c("linseed", "soybean")]
+chick2
+
+boxplot(chick2)
+
+
+t.test(chick2$linseed, chick2$soybean)
+\end{semiverbatim}
+  \vspace{2ex}
+  \begin{itemize}
+    \item[-] Assume equal variance in both groups?
+    \quad\textgray{\texttt{var.equal=TRUE}}\\[1ex]
+    \item[-] Don't use functions like black box; do once by hand if possible
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Plant growth (aov)}
+\begin{lstlisting}
+PlantGrowth
+
+boxplot(weight~group, data=PlantGrowth)
+
+
+
+aov(weight~group, data=PlantGrowth)
+
+summary(aov(weight~group, data=PlantGrowth))
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Car stopping distance (simple lm)}
+\begin{lstlisting}
+cars
+
+head(cars)
+
+plot(dist~speed, data=cars)
+
+
+mylm <- lm(dist~speed, data=cars)
+abline(mylm)
+summary(mylm)
+
+par(mfrow=c(2,2))
+plot(mylm)
+\end{lstlisting}
+  \vspace{2ex}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Car stopping distance (simple lm)}
+  \textblue{Try log-log transformation}\\[2ex]
+\begin{lstlisting}
+par(mfrow=c(1,1))
+plot(log(dist)~log(speed), data=cars)
+
+
+mylog <- lm(log(dist)~log(speed), data=cars)
+abline(mylog)
+summary(mylog)
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Car stopping distance (simple lm)}
+  \textblue{Model comparison: visualize fit}\\[2ex]
+\begin{lstlisting}
+par(mfrow=c(2,1))
+plot(dist~speed, data=cars, main="normal")
+abline(mylm)
+
+dev.new()
+
+plot(log(dist)~log(speed), data=cars, main="log-log")
+abline(mylog)
+\end{lstlisting}
+\end{frame}
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Car stopping distance (simple lm)}
+  \textblue{Model comparison: diagnostic plots}\\[2ex]
+\begin{semiverbatim}
+par(mfrow=c(2,2))
+plot(mylm, main="normal")
+
+dev.new()
+
+par(mfrow=c(2,2))
+plot(mylog, main="log-log")
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Car stopping distance (simple lm)}
+  \textblue{Model comparison: $R^2$ and AIC}\\[2ex]
+\begin{semiverbatim}
+summary(mylm)
+summary(mylog)
+
+names(summary(mylm))
+
+summary(mylm)$r.s
+summary(mylog)$r.s
+
+
+
+AIC(mylm, mylog)
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Tooth growth (ancova lm)}
+\begin{lstlisting}
+ToothGrowth
+
+head(ToothGrowth)
+
+summary(ToothGrowth)
+
+
+
+boxplot(len~supp, data=ToothGrowth)
+
+plot(len~dose, data=ToothGrowth)
+
+plot(len~log(dose), data=ToothGrowth)
+\end{lstlisting}
+  ~\\[1ex]
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Tooth growth (ancova lm)}
+\begin{lstlisting}
+library(lattice)
+xyplot(len~log(dose)|supp, data=ToothGrowth,
+       panel=function(...){panel.xyplot(...);
+                           panel.lmline(...)})
+\end{lstlisting}
+  \vspace{3ex}
+  {\blue Same line, different intercept, different slope, or both different}
+\begin{lstlisting}
+lm(len~log(dose), data=ToothGrowth) # coefs 2
+lm(len~log(dose)+supp, data=ToothGrowth)  # 3
+lm(len~log(dose):supp, data=ToothGrowth)  # 3
+lm(len~log(dose)*supp, data=ToothGrowth)  # 4
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Tooth growth (ancova lm)}
+  \textblue{Forward selection}\\[2ex]
+\begin{lstlisting}
+add1(lm(len~1, data=ToothGrowth),
+     .~log(dose)*supp, test="F")
+
+
+add1(lm(len~log(dose), data=ToothGrowth),
+     .~log(dose)*supp, test="F")
+
+
+add1(lm(len~log(dose)+supp, data=ToothGrowth),
+     .~log(dose)*supp, test="F")
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Tooth growth (ancova lm)}
+  \textblue{Backward selection}\\[2ex]
+\begin{lstlisting}
+drop1(lm(len~log(dose)*supp, data=ToothGrowth), test="F")
+
+
+anova(lm(len~log(dose)*supp, data=ToothGrowth))
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Tooth growth (ancova lm)}
+  \textblue{Plot data}\\[2ex]
+\begin{lstlisting}
+mylm <- lm(len~log(dose)*supp, data=ToothGrowth)
+
+
+plot(len~log(dose), data=ToothGrowth, subset=supp=="OJ",
+     ylim=c(0,35), pch=16, col="orange")
+
+
+points(len~log(dose), data=ToothGrowth, subset=supp=="VC",
+       pch=16, col="blue")
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Tooth growth (ancova lm)}
+  \textblue{Plot model predictions}\\[2ex]
+\begin{semiverbatim}
+d <- c(0.5, 1, 2)
+
+ojfit <- predict(mylm, data.frame(dose=d, supp=factor("OJ")))
+
+vcfit <- predict(mylm, data.frame(dose=d, supp=factor("VC")))
+
+lines(log(d), ojfit, lwd=2, col="orange")
+
+lines(log(d), vcfit, lwd=2, col="blue")
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Tooth growth (ancova lm)}
+  \textblue{Other approaches}\\[2ex]
+\begin{lstlisting}
+example(boxplot)
+
+anova(lm(len~factor(dose)*supp, data=ToothGrowth))
+\end{lstlisting}
+  \vspace{3ex}
+  Should \textblue{dose} be a linear term or a factor?\\[2ex]
+  \begin{itemize}
+    \item[]  The question is whether we're interested only in 0.5/1/2 mg
+    doses,\\
+    or also in predicting the effect of other doses\\[2ex]
+    \item[] Nonlinear models might be more appropriate
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Fuel efficiency (multiple lm)}
+  \textblue{Stepwise selection: starting from null model}
+\begin{lstlisting}
+mylm1 <- step(lm(I(1/mpg)~1, data=mtcars),
+              .~cyl+disp+hp+drat+wt+qsec+factor(vs)
+                +factor(am)+gear+carb)
+\end{lstlisting}
+  \vspace{3ex}
+  \textblue{Stepwise selection: starting from full model}
+\begin{lstlisting}
+mylm2 <- step(lm(I(1/mpg)~cyl+disp+hp+drat+wt+qsec+factor(vs)
+                          +factor(am)+gear+carb, data=mtcars))
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Fuel efficiency (multiple lm)}
+  \textblue{Model comparison: AIC}\\[2ex]
+\begin{semiverbatim}
+summary(mylm1)
+
+summary(mylm2)
+
+
+
+AIC(mylm1, mylm2)
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Extra credit}
+  Now repeat the \texttt{lm()} examples\\[2ex]
+  using the \texttt{linest()} function in Excel
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Horse kicks}
+  \begin{columns}
+    \column{0.3\textwidth}
+    \begin{center}
+      \includegraphics[width=\textwidth]{kick1}\vspace{3ex}
+      \includegraphics[width=0.6\textwidth]{kick2}
+    \end{center}
+    \column{0.7\textwidth}
+    \includegraphics[width=\textwidth]{kick3}
+  \end{columns}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Horse kicks}
+\begin{lstlisting}
+kick <- read.table("kick.txt", header=TRUE)
+kick
+
+head(kick)
+
+
+xtabs(N~Corps+Year, data=kick)
+
+tapply(kick$N, kick$Corps, sum)
+
+
+barplot(tapply(kick$N, kick$Corps, sum))
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Horse kicks}
+  \textblue{IX is before V, fix that}\\[4ex]
+\begin{semiverbatim}
+lev <- c("G", as.character(as.roman(c(1:11,14:15))))
+
+
+kick$Corps <- ordered(kick$Corps, levels=lev)
+
+
+barplot(tapply(kick$N, kick$Corps, sum))
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Horse kicks (chisq.test)}
+  \textblue{Does the ``deaths-due-to-horse-kicks'' rate vary between corps?}
+\begin{semiverbatim}
+chisq.test(tapply(kick$N, kick$Corps, sum))
+\end{semiverbatim}
+  \vspace{3em}
+  \textblue{Does the ``deaths-due-to-horse-kicks'' rate vary between years?}
+\begin{semiverbatim}
+barplot(tapply(kick$N, kick$Year, sum))
+
+chisq.test(tapply(kick$N, kick$Year, sum))
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Horse kicks (glm)}
+\begin{lstlisting}
+par(mfrow=c(2,1))
+barplot(tapply(kick$N, kick$Corps, sum),
+        main="Deaths by Corps")
+barplot(tapply(kick$N, kick$Year, sum),
+        main="Deaths by Year")
+
+
+
+kick.0 <- glm(N~1, data=kick, family=poisson)
+
+anova(step(kick.0, .~factor(Year)*Corps), test="Chisq")
+\end{lstlisting}
+~\\[2ex]
+\end{frame}
+
+\end{document}

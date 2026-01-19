@@ -1,0 +1,333 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{generic}
+\newcommand\cpp{\mbox{C\raisebox{0.5ex}{\tiny\bfseries ++}}}
+\newcommand\latex{\mbox{La\h{-0.3ex}TeX}}
+\begin{document}
+
+\begin{frame}
+  \title{\vspace{-2ex}\darkblue Statistical Computing}
+  \author{\vspace{-16ex}\normalsize Arni Magnusson}
+  \date{\vspace{-3ex}
+    {\darkgreen\it Statistical Modeling in R}\\[0.5ex]
+    Universidad de Concepción\\[0.5ex]
+    19\h{0.2ex}--\h{0.1ex}23 January 2026}
+  \titlepage
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\darkblue Statistical Computing and R}\\
+  \comment{features, history}\\[4ex]
+  \textbf{\darkblue Open Science}\\
+  \comment{software, scientific method, repeatability, reviewability}\\[4ex]
+  \textbf{\darkblue First Steps in R}\\
+  \comment{calculator, objects, plots, help}\\[4ex]
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Statistical computing}
+  \begin{tabular}{ll}
+    GUI         &~ Excel, JMP, LibreOffice, Minitab, SPSS, Stata     \\[3ex]
+    Interpreted &~ BUGS, Julia, Matlab, Python, \textbf{\blue R}, SAS\\[3ex]
+    Compiled    &~ C/\cpp, Fortran, Java                             \\[3ex]
+    Related     &~ Bash, HTML, \latex, Make, SQL                     \\[3ex]
+    Editor      &~ Emacs, Positron, \textbf{\green RStudio}, VS Code \\[2ex]
+  \end{tabular}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Spreadsheets}
+  Excel and LibreOffice Calc can be useful for:\\[0.2ex]
+  \begin{itemize}
+    \item Taking notes in an environment where you can calculate summary
+    statistics\\
+    \comment{family trip, project management}
+    \item Simple statistical analysis, if spreadsheet is the only tool you
+    know\\[3ex]
+  \end{itemize}
+  Compared to statistical software, spreadsheets are:\\[0.2ex]
+  \begin{itemize}
+    \item[-] Limited, with few features \vspace{-0.2ex}
+    \item[-] Unreliable, can produce the wrong result \vspace{-0.2ex}
+    \item[-] Error-prone, easy to make mistakes without noticing \vspace{-0.2ex}
+    \item[-] Unwieldy, difficult to work with many tables and sheet references
+    \vspace{-0.2ex}
+    \item[-] Can be difficult to review or repeat analysis for another
+    dataset\\[2ex]
+  \end{itemize}
+  Use only \texttt{+ - / *}, \texttt{sum}, \texttt{average}, and statistical
+  software for everything else\\[1ex]
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Using the right tool}
+  Imagine writing a 20-page text document in Excel\\[1ex]
+  \begin{itemize}
+    \item[] $\Rightarrow$ inferior quality, hard to modify, prone to
+    errors\\[5ex]
+  \end{itemize}
+  Likewise, R is not always the right tool in statistical computing:\\[1ex]
+  \begin{itemize}
+    \item[] \textblue{Databases} for large amounts of data\\[1ex]
+    \item[] \textblue{\cpp} for computationally intensive subtasks\\[5ex]
+  \end{itemize}
+  R has good support for connecting to databases and running compiled \cpp\ code
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{R features}
+  \begin{itemize}
+    \item[] Large collection of tools for statistical analysis, constantly
+    updated by\\
+    a large user commity, including leading authors in statistical fields\\[5ex]
+    \item[] Graphics for exploratory analysis and publications\\[5ex]
+    \item[] Language for expressing statistical models, object-oriented and\\
+    extensible by users\\[5ex]
+    \item[] Used by university statistics departments and research institutes\\
+    around the world\\[2ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{R early history}
+  \textbf{\blue S}\\
+  \begin{itemize} \item[]\small
+    Programming language, first released in 1976\\
+    Created by John Chambers et al., Bell Laboratories\\[3.5ex]
+  \end{itemize}
+  \textbf{\blue S-Plus}\\
+  \begin{itemize} \item[]\small
+    Statistical software based on S, first released in 1988\\
+    Created by R Douglas Martin, Univ Washington\\[3.5ex]
+  \end{itemize}
+  \textbf{\blue R}\\
+  \begin{itemize} \item[]\small
+    Statistical software based on S, first released in 1993\\
+    Created by Ross Ihaka and Robert Gentleman, Univ Auckland\\
+    Maintained by R Core Development Team since 1997\\
+    R became better than S-Plus around 2002\\[1.5ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{RStudio and tidyverse}
+  \textbf{\green ggplot2}
+  \begin{itemize} \item[]\small
+    Plotting package, first released in 2007\\
+    Created by Hadley Wickham\\[2.5ex]
+  \end{itemize}
+  \textbf{\green RStudio}
+  \begin{itemize} \item[]\small
+    Development environment, first released in 2011\\
+    Created by J.J. Allaire and Joe Cheng\\[2.5ex]
+  \end{itemize}
+  \textbf{\green dplyr}
+  \begin{itemize} \item[]\small
+    Data manipulation package, first released in 2014\\
+    Created by Hadley Wickham and Romain François\\[2.5ex]
+  \end{itemize}
+  \textbf{\green R for Data Science}
+  \begin{itemize} \item[]\small
+    Influential textbook, first published in 2017\\
+    Written by Hadley Wickham and Garrett Grolemund\\[2ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{R Project website}
+  \begin{center}
+    \textblue{\url{https://www.r-project.org}}\\[3ex]
+    \textgray{Download R, manuals, etc.}
+  \end{center}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}
+  \begin{center}
+    \vspace{-1ex}
+    \includegraphics[height=1.05\textheight]{open_science}
+  \end{center}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Open source}
+  \begin{itemize}
+    \item[] Most R functions are written in the R language, and the\\
+    full code is shown if you type the name of the function\\[3ex]
+    Low-level functions are written in C, and the full code can\\
+    be browsed at \url{https://svn.r-project.org/R/trunk/}\\[3ex]
+    This access to the source code is of critical value for\\
+    complex statistical models\\[3ex]
+    Open source principles (making a thorough description\\
+    of methods publicly available) have been a foundation\\
+    of scientific research for
+    centuries\\[2ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Repeatable and reviewable research}
+  \begin{itemize}
+    \item[] An Excel file containing a complex analysis may not allow\\
+    other scientists to apply the method to another dataset, or\\
+    to understand the different steps in the analysis\\[6ex]
+    \item[] R makes a clear separation between data and calculations, and\\
+    the computations follow a logical order: first this, then that, etc.\\[6ex]
+    \item[] We try to write code that is easy for others to understand\\[4ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Scientific method}
+  \begin{itemize}
+    \item[] Open source statistical software has become a cornerstone of\\
+    scientific inference, and is a modern element of the scientific method:\\
+    medical research, astronomy, everywhere.\\[6ex]
+    \item[] The software development process is a collaborative effort of
+    scientists\\
+    worldwide, and relies on users contributing code, documentation,\\
+    bug reports, etc.\\[6ex]
+    \item[] You can contribute to open source software\\[2ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{First steps in R}
+  \textbf{Install \blue R}\\[1ex]
+  \begin{itemize}
+    \item[] \url{https://www.r-project.org}\\[8ex]
+  \end{itemize}
+  \textbf{Install \green RStudio} (or some other editor)\\[1ex]
+  \begin{itemize}
+    \item[] \url{https://posit.co}\\[3ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Calculator with functions}
+\begin{semiverbatim}
+2 + 2
+
+
+sqrt(10)
+
+
+log(10)
+
+
+\textgray{# try the up arrow}
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Objects in workspace}
+\begin{semiverbatim}
+x <- 2
+
+10 * x
+
+
+ls()
+
+rm(x)
+
+rm(list=ls())
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Data objects}
+  \textblue{Vectors}
+  \begin{itemize}
+    \item[] \verb|rivers|
+    \item[] \verb|month.abb|\\[4ex]
+  \end{itemize}
+  \textblue{Data frames}
+  \begin{itemize}
+    \item[] \verb|BOD|
+    \item[] \verb|mtcars|\\[4ex]
+  \end{itemize}
+  \textblue{Select column}
+  \begin{itemize}
+    \item[] \verb|mtcars$hp|
+  \end{itemize}
+  \vspace{2ex}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Plots}
+\begin{semiverbatim}
+x <- 1:10
+
+y <- 3 * x
+
+
+plot(x, y)
+
+
+y <- 100 * x
+
+\end{semiverbatim}
+  The plot is not ``alive'', so the y coordinates are not updated\\[0.5ex]
+  unless \verb|plot(x, y)| is called again\\[3ex]
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Help}
+\begin{semiverbatim}
+help(log)
+
+?log
+
+
+
+args(log)
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Help}
+  If you get an error message:
+  \begin{itemize}
+    \item[] press the up arrow and try to rewrite
+    \item[] the error message sometimes describes the problem\\[6ex]
+  \end{itemize}
+  If R doesn't respond to user input:
+  \begin{itemize}
+    \item[] press the \texttt{Esc} key
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\darkblue Statistical Computing and R}\\
+  \comment{features, history}\\[4ex]
+  \textbf{\darkblue Open Science}\\
+  \comment{software, scientific method, repeatability, reviewability}\\[4ex]
+  \textbf{\darkblue First Steps in R}\\
+  \comment{calculator, objects, plots, help}\\[4ex]
+\end{frame}
+
+\end{document}

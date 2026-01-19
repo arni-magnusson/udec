@@ -1,0 +1,171 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{generic}
+\begin{document}
+
+\begin{frame}
+  \title{\vspace{-2ex}\darkblue Course Overview}
+  \author{\vspace{-16ex}\normalsize Arni Magnusson}
+  \date{\vspace{-3ex}
+    {\darkgreen\it Statistical Modeling in R}\\[0.5ex]
+    Universidad de Concepción\\[0.5ex]
+    19\h{0.2ex}--\h{0.1ex}23 January 2026}
+  \titlepage
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Overview}
+  \begin{enumerate}
+    \item \textbf{Introduction to R}\\
+    \comment{data, plots, tests, linear models, projects, help, functions,
+      packages}\\[2ex]
+    \item \textbf{Extending the Linear Model}\\
+    \comment{generalized linear models, additive models, mixed effects}\\[2ex]
+    \item \textbf{Nonlinear Models}\\
+    \comment{uncertainty, maximum likelihood, hessian, simulations}\\[2ex]
+    \item \textbf{RTMB}\\
+    \comment{automatic differentiation, writing models, running models}\\[2ex]
+    \item \textbf{Software Development}\\
+    \comment{interacting with other programs, writing packages, github}\\[3ex]
+  \end{enumerate}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Teach yourself programming in 10 years}
+  \textgray{\it Famous essay by Peter Norvig, a computer scientist}\\[3ex]
+  \begin{itemize}
+    \item[] It takes around 10 years to develop expertise in a given field:\\
+    chess, painting, tennis, swimming, piano, programming, \dots\\[5ex]
+    \item[] Use the programming languages that your friends use\\[5ex]
+    \item[] Work with other programmers, contribute to open source
+    projects\\[5ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Learning goals and AI}
+  \begin{itemize}
+    \item[] It's important to think about learning goals\\[4ex]
+    \item[] You will probably work with statistical models in your career\\[4ex]
+    \item[] How can you benefit the most from this course?\\[4ex]
+    \item[] AI can be useful, but it can also slow down your learning\\[4ex]
+    \item[] You can do well in this course without using AI\\[2ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Organizing your notes and code this week}
+  \textgray{\it Some ideas \dots}\\[3ex]
+  \begin{itemize}
+    \item[] Take personal {\bf\blue course notes} (day by day), either in a word
+    processor,\\
+    text editor, or just on paper.\\[4ex]
+    \item[] Organize {\bf\blue long-term notes} (by subject) in a word processor
+    or text editor.\\
+    You can gradually build these notes over months and years,
+    and use them\\
+    as a reference.\\[4ex]
+    \item[] Organize and save your work as {\bf\blue R scripts}. Scripts are
+    text files that\\
+    contain code (and often comments) that can be pasted or sourced into
+    R.\\[3ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Format of the course}
+  \textblue{Challenges}\\[0.5ex]
+  \begin{itemize}
+    \item A lot of statistics and programming concepts in a short time\\
+    $\Rightarrow$ may feel too fast and confusing\\[1ex]
+    \item Participants have different background in statistical computing
+  \end{itemize}
+  \vspace{2ex}
+  \textblue{Approach}\\[0.5ex]
+  \begin{itemize}
+    \item Emphasis on exercises and discussion rather than lectures\\[1ex]
+    \item Open-ended exercises $\Rightarrow$ participants can work on basic or\\
+    advanced aspects, depending on their background\\[1ex]
+    \item Bring your own exercises and projects to class\\[1ex]
+    \item Work together in pairs as much as we can; we gain deeper\\
+    insight when discussing with others
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Introduce ourselves}
+  \begin{itemize}
+    \item[] \textblue{Name} and \textblue{workplace}\\[6ex]
+    \item[] \textblue{Project(s)} you are working on\\[6ex]
+    \item[] Previous \textblue{background} in R and statistical computing in
+    general\\[6ex]
+    \item[] What you hope to \textblue{learn} this week\\[4ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Course evaluation}
+  \textblue{\bf R scripts that you create (75\%)}\\[1ex]
+  \quad {\darkgray\it from Monday, Tuesday, and Wednesday}\\[8ex]
+  \textblue{\bf Group project (25\%)}\\[1ex]
+  \quad {\darkgray\it present on Friday}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Course evaluation}
+  \textblue{\bf R scripts that you create (75\%)}\\[2.5ex]
+  At the end of each day, email me all R code that you wrote that day. The R
+  scripts should:\\[1ex]
+  \begin{itemize}
+    \item Reach me before class starts the next day.\\[2ex]
+    \item Run on my computer without returning an error, but if you want you
+    can also send\\
+    a separate file with R code that doesn't quite
+    work.\\[2ex]
+    \item Not include unnecessary code.\\[2ex]
+    \item Include some comments describing the purpose of each part of the
+    code. Well organized code doesn't need a lot of comments. The comments
+    should enable an experienced R programmer to read quickly through the
+    script and understand it.
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Course evaluation}
+  \textblue{\bf Group project (25\%)}\\[2.5ex]
+  \begin{itemize}
+    \item Form groups and discuss datasets on Wednesday.\\[2ex]
+    \item Analyze a dataset and write R functions.\\[2ex]
+    \item Present on Friday.
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Overview}
+  \begin{enumerate}
+    \item \textbf{Introduction to R}\\
+    \comment{data, plots, tests, linear models, projects, help, functions,
+      packages}\\[2ex]
+    \item \textbf{Extending the Linear Model}\\
+    \comment{generalized linear models, additive models, mixed effects}\\[2ex]
+    \item \textbf{Nonlinear Models}\\
+    \comment{uncertainty, maximum likelihood, hessian, simulations}\\[2ex]
+    \item \textbf{RTMB}\\
+    \comment{automatic differentiation, writing models, running models}\\[2ex]
+    \item \textbf{Software Development}\\
+    \comment{interacting with other programs, writing packages, github}\\[3ex]
+  \end{enumerate}
+\end{frame}
+
+\end{document}

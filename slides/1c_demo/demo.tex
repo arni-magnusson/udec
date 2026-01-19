@@ -1,0 +1,175 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{generic}
+\begin{document}
+
+\begin{frame}
+  \title{\vspace{-2ex}\darkblue Demo Session}
+  \author{\vspace{-16ex}\normalsize Arni Magnusson}
+  \date{\vspace{-3ex}
+    {\darkgreen\it Statistical Modeling in R}\\[0.5ex]
+    Universidad de Concepción\\[0.5ex]
+    19\h{0.2ex}--\h{0.1ex}23 January 2026}
+  \titlepage
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\darkblue Import}\\
+  \comment{get data into R}\\[2ex]
+  \textbf{\darkblue Explore}\\
+  \comment{plot and summarize}\\[2ex]
+  \textbf{\darkblue Analyze}\\
+  \comment{fit a regression model}\\[2ex]
+  \textbf{\darkblue Export}\\
+  \comment{save results to include in a report}\\[2ex]
+  \textbf{\darkblue Philosophy}\\
+  \comment{repeatable and scalable}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Save spreadsheet as text file}
+  Download \verb|cars.xlsx| and open in Excel\,/\,LibreOffice\\[3ex]
+  Save as \verb|cars.txt| (tab-separated) and view in editor\\[3ex]
+  Organize project with separate directories:
+\begin{semiverbatim}
+  cars
+      analysis
+      data
+      report
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Write the analysis as a script}
+  \begin{itemize}
+    \item[] Create empty script \verb|analysis/cars.R|\\[5ex]
+    \item[] Type commands in the same order as they need to be run\\[5ex]
+    \item[] Annotate with comments to describe what each block of code
+    does\\[5ex]
+    \item[] Try to write the script so it will run on any computer, starting
+    with input\\
+    and ending with output\\[2ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Read text file into R}
+  Use relative paths:\\[3ex]
+\begin{semiverbatim}
+cars <- read.table("../data/cars.txt", header=TRUE)
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Check if data look OK}
+\begin{semiverbatim}
+cars
+
+
+head(cars)
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Scatterplot}
+\begin{semiverbatim}
+plot(cars$speed, cars$dist)
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Range, median, mean, etc.}
+\begin{semiverbatim}
+summary(cars)
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Fit linear regression model}
+\begin{lstlisting}
+cars.lm <- lm(dist~speed, data=cars)
+
+
+abline(cars.lm)
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Paste model summary}
+\begin{semiverbatim}
+summary(cars.lm)
+\end{semiverbatim}
+  \vspace{3ex}
+  Copy from R and paste into Word/\,LibreOffice document
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Write plot to PNG file}
+\begin{lstlisting}
+png("../report/cars.png")
+
+plot(dist~speed, data=cars)
+
+abline(cars.lm)
+
+dev.off()
+\end{lstlisting}
+  \vspace{3ex}
+  Insert \verb|cars.png| into document
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Clean up script}
+  \begin{itemize}
+    \item[] Delete all unnecessary lines\\[6ex]
+    \item[] Add comments, if needed\\[6ex]
+    \item[] Make sure the whole script runs without errors\\[3ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Repeatable analysis}
+  If you send the data files and script to colleagues,\\
+  they can repeat the analysis
+  \begin{itemize}
+    \item foundation of the scientific method\\[5ex]
+  \end{itemize}
+  Easy to make changes and rerun the entire analysis
+  \begin{itemize}
+    \item[-] add one year of data
+    \item[-] explore different modelling choices
+    \item[-] respond to a reviewer's comment\\[5ex]
+  \end{itemize}
+  Easy to repeat the analysis for many datasets\\[3ex]
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\darkblue Import}\\
+  \comment{get data into R}\\[2ex]
+  \textbf{\darkblue Explore}\\
+  \comment{plot and summarize}\\[2ex]
+  \textbf{\darkblue Analyze}\\
+  \comment{fit a regression model}\\[2ex]
+  \textbf{\darkblue Export}\\
+  \comment{save results to include in a report}\\[2ex]
+  \textbf{\darkblue Philosophy}\\
+  \comment{repeatable and scalable}
+\end{frame}
+
+\end{document}
