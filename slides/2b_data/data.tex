@@ -1,0 +1,508 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{generic}
+\begin{document}
+
+\begin{frame}
+  \title{\vspace{-2ex}\darkblue Working with Data}
+  \author{\vspace{-16ex}\normalsize Arni Magnusson}
+  \date{\vspace{-3ex}
+    {\darkgreen\it Statistical Modeling in R}\\[0.5ex]
+    Universidad de Concepción\\[0.5ex]
+    19\h{0.2ex}--\h{0.1ex}23 January 2026}
+  \titlepage
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\blue Data Objects}\\
+  \comment{numbers, strings, vectors, tables}\\[4ex]
+  \textbf{\blue Special Objects}\\
+  \comment{lists, date/time, formula}\\[4ex]
+  \textbf{\blue Information}\\
+  \comment{class, dimensions, names}\\[4ex]
+  \textbf{\blue Manipulation}\\
+  \comment{subset, round, aggregate}\\[2ex]
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Simple objects}
+  \begin{tabular}{ll}
+    \blue\verb|integer  | & \verb|1       2       3      |\\[1.5ex]
+    \blue\verb|numeric  | & \verb|0.1     0.2     0.3    |\\[1.5ex]
+    \blue\verb|character| & \verb|"one"   "two"   "three"|\\[1.5ex]
+    \blue\verb|logical  | & \verb|TRUE    FALSE   TRUE   |\\[3ex]
+  \end{tabular}\\
+  Is \verb|x| integer?
+  \begin{itemize}
+    \item[] \verb|is.integer(x)|\\[2ex]
+  \end{itemize}
+  Convert \verb|x| to integer
+  \begin{itemize}
+    \item[] \verb|as.integer(x)|
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Unusual values}
+  \begin{tabular}{lll}
+    \verb|0        | & zero                  & \verb|  x == 0        |\\[1ex]
+    \verb|""       | & empty string          & \verb|  x == ""       |\\[3ex]
+    \verb|NA       | & not available         & \verb|  is.na(x)      |\\[1ex]
+    \verb|NULL     | & not defined           & \verb|  is.null(x)    |\\[3ex]
+    \verb|Inf      | & large positive number & \verb|  is.infinite(x)|\\[1ex]
+    \verb|-Inf     | & large negative number & \verb|  is.infinite(x)|\\[3ex]
+    \verb|FALSE    | & not TRUE              & \verb|  !x            |\\[1ex]
+  \end{tabular}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Vector and factor}
+\begin{semiverbatim}
+numbers <- c(10, 20, 30)
+strings <- c("ten", "twenty", "thirty")
+
+
+vec <- c("West", "Center", "East", "West", "Center")
+fac <- factor(vec)
+ord <- ordered(vec, levels=c("West","Center","East"))
+
+table(fac)
+table(ord)
+
+plot(fac)
+plot(ord)
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Data frame, matrix, table}
+\begin{semiverbatim}
+\textgray{# numbers <- c(10, 20, 30)}
+\textgray{# strings <- c("ten", "twenty", "thirty")}
+data.frame(one=numbers, two=strings)
+
+
+matrix(c(10, 20, 30, 40), ncol=2)
+
+mtcars
+class(mtcars)
+as.matrix(mtcars)
+
+table(mtcars$cyl)
+table(mtcars$am, mtcars$cyl)
+\end{semiverbatim}
+\vspace{4ex}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Data frame, matrix, table}
+  \begin{description}
+    \item[\tt\blue data.frame] data in columns (analysis, plots)\\
+    \textbf{default choice} for statistical analysis\\
+    supports \lstinline{y~x} formula notation\\
+    supports \lstinline|x$name| column selection\\[3ex]
+    \item[\tt\blue matrix] all values of same mode (linear algebra)\\[3ex]
+    \item[\tt\blue table] frequency table (view)\\[3ex]
+    \item[\tt\green tibble] when using the tidyverse package\\[3ex]
+    \item[\tt\green data.table] when using data.table package\\[3ex]
+  \end{description}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{List}
+\begin{semiverbatim}
+list(one=rivers, two=TRUE, three=sleep, four=pi)
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Date/time}
+\begin{semiverbatim}
+as.Date("2026-01-19")
+
+
+
+
+as.POSIXct("2026-01-19 23:59:59")
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Formula}
+\begin{lstlisting}
+plot(mpg~cyl, data=mtcars)
+
+
+
+lm(mpg~cyl, data=mtcars)
+
+
+
+aggregate(mpg~cyl, data=mtcars, mean)
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Object information}
+\linespread{1.4}
+\begin{columns}[T]
+  \column{0.35\textwidth}
+\begin{semiverbatim}
+  {\blue length}(rivers)
+  {\blue dim}(mtcars)
+  {\blue nrow}(mtcars)
+  {\blue ncol}(mtcars)
+  \vspace{1ex}
+  {\blue names}(mtcars)
+  {\blue colnames}(mtcars)
+  {\blue rownames}(mtcars)
+  {\blue dimnames}(mtcars)
+\end{semiverbatim}
+  \column{0.65\textwidth}
+\begin{semiverbatim}
+  {\blue mode}(WorldPhones)
+  {\blue class}(WorldPhones)
+  {\blue unclass}(mtcars)
+  {\blue attributes}(mtcars)
+  \vspace{1ex}
+  {\blue head}(mtcars)
+  {\blue tail}(mtcars)
+  {\blue unique}(mtcars$cyl)
+  {\blue object.size}(mtcars)
+\end{semiverbatim}
+\end{columns}
+\vspace{6ex}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Names}
+\begin{semiverbatim}
+v <- c(10, 20, 30)
+
+names(v) <- c("one", "two", "three")
+
+
+
+head(cars)
+
+names(cars) <- c("s", "d")  {\gray # or colnames}
+
+dimnames(cars)
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Logical expressions}
+\begin{semiverbatim}
+pi == 3
+
+pi != 3
+
+
+pi < 3
+
+pi <= 3
+
+
+pi > 3
+
+pi >= 3
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Logical expressions}
+  \textblue{AND}
+  \begin{itemize}
+    \item[] \verb|logical && logical| \quad {\tt\gray \# one value}
+    \item[] \verb|vector  &  vector | \quad {\tt\gray \# many values}\\[3ex]
+  \end{itemize}
+  \textblue{OR}
+  \begin{itemize}
+    \item[] \verb+logical || logical+ \quad {\tt\gray \# one value}
+    \item[] \verb+vector  |  vector + \quad {\tt\gray \# many values}\\[3ex]
+  \end{itemize}
+  \textblue{NOT}
+  \begin{itemize}
+    \item[] \verb|!logical|
+    \item[] \verb|!vector |
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Logical expressions}
+\begin{semiverbatim}
+pi > 3
+
+is.character(pi)
+
+!is.character(pi)
+
+
+
+pi > 3  &&  is.character(pi)
+
+pi > 3  ||  is.character(pi)
+
+!(pi > 3  ||  is.character(pi))
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Logical expressions}
+\begin{semiverbatim}
+\textgray{# numbers <- c(10, 20, 30)}
+\textgray{# strings <- c("ten", "twenty", "thirty")}
+
+
+numbers >= 20
+strings == "thirty"
+numbers >= 20  |  strings == "thirty"
+numbers >= 20  &  strings == "thirty"
+
+
+any(numbers >= 20)
+all(numbers >= 20)
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Logical expressions}
+\begin{semiverbatim}
+chickwts$feed=="soybean" | chickwts$feed=="casein"
+
+
+chickwts$feed %in% c("soybean","casein")
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Ways to subset}
+\textblue{Vector} ~ {\gray (logical, integer, names)}
+\vspace{-1.5ex}
+\begin{semiverbatim}\small
+  islands[islands < 20]
+  islands[1:3]
+  islands[c("Greenland", "Iceland", "Britain")]
+\end{semiverbatim}
+\vspace{0.5ex}
+\textblue{Data frame} ~ {\gray (dollar, logical, integer, names)}
+\vspace{-1.5ex}
+\begin{semiverbatim}\small
+  cars$dist
+  cars[1, 2]
+  cars[1:10, 1]
+  cars[,1]
+\end{semiverbatim}
+\vspace{0.5ex}
+\textblue{List} ~ {\gray (dollar, logical, integer, names)}
+\vspace{-1.5ex}
+\begin{semiverbatim}\small
+  z <- list(one=rivers, two=TRUE, three=sleep, four=pi)
+  z$two
+  z["two"]    {\gray # returns a list of length one}
+  z[["two"]]  {\gray # returns the value, same as z$two}
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Extract}
+\textblue{Vector}
+\vspace{-1.5ex}
+\begin{semiverbatim}
+v <- c(1, 3, 5, 7, 9)
+v[1:3]
+\end{semiverbatim}
+\vspace{2ex}
+\textblue{Data frame}
+\vspace{-1.5ex}
+\begin{semiverbatim}
+x <- data.frame(num=v, char=letters[v])
+x[1:3, "char"]
+\end{semiverbatim}
+\vspace{2ex}
+\textblue{List}
+\vspace{-1.5ex}
+\begin{semiverbatim}
+z <- list(one=rivers, two=TRUE, three=sleep, four=pi)
+z$two
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Replace}
+\textblue{Vector}
+\vspace{-1.5ex}
+\begin{semiverbatim}
+v <- c(1, 3, 5, 7, 9)
+v[1:3] <- 0
+v <- v[-(1:3)]
+\end{semiverbatim}
+\vspace{1ex}
+\textblue{Data frame}
+\vspace{-1.5ex}
+\begin{semiverbatim}
+x <- data.frame(num=v, char=letters[v])
+x[1:3, "char"] <- ""
+x <- x[-(1:3),]
+\end{semiverbatim}
+\vspace{1ex}
+\textblue{List}
+\vspace{-1.5ex}
+\begin{semiverbatim}
+z <- list(one=rivers, two=TRUE, three=sleep, four=pi)
+z$two <- FALSE
+z$two <- NULL
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Subset summary}
+  \blue\verb|x[i]        x["name"]             |
+  \verb|x[c(TRUE,FALSE)]|\black
+  \begin{itemize}
+    \item[] select elements from vector\\[3ex]
+  \end{itemize}
+  \blue\verb|x[i,]       x["name",]            |
+  \verb|x[c(TRUE,FALSE),]|\gray\verb|  # row   |\\
+  \blue\verb|x[,j]       x[,"name"]            |
+  \verb|x[,c(TRUE,FALSE)]|\gray\verb|  # column|\\
+  \blue\verb|x[i, j]     x["name", "name"]     |
+  \verb|x[c(TRUE,FALSE), c(TRUE,FALSE)]|\black
+  \begin{itemize}
+    \item[] select rows/columns/elements from data frame or matrix\\[3ex]
+  \end{itemize}
+  \blue\verb|x$name|\black
+  \begin{itemize}
+    \item[] select column in data frame, or element in list
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Repeat, sample, order}
+\begin{semiverbatim}
+rep(10, 3)
+rep(1:10, 3)
+rep(1:10, each=3)
+rep(1:10, length=22)
+
+sample(month.abb, 10, replace=TRUE)
+
+sort(islands)
+sort(islands, decreasing=TRUE)
+
+rev(rivers)
+order(rivers)  \textgray{# rivers[order(rivers)]}
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Numbers}
+\begin{semiverbatim}
+1:10
+seq(1, 10, 0.5)
+seq(1, 10, length=5)
+
+rnorm(10, m=0, s=1)
+runif(10, min=0, max=1)
+rpois(10, lambda=1)
+
+round(pi)
+
+trunc(pi)
+
+pi %% 1
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{String manipulation}
+\begin{semiverbatim}
+nchar(month.name)
+
+paste(month.abb[1], month.abb[3], sep="-")
+paste(month.abb, collapse=".")
+
+substring(month.abb, first=2, last=3)
+
+grep("r", month.name)
+month.abb[grep("r", month.name)]
+month.abb[grep("r", month.name, invert=TRUE)]
+
+gsub("J", "Y", month.abb)
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Bind, apply, transpose}
+\begin{semiverbatim}
+v <- 1:10
+cbind(v)
+cbind(v^2, log(v))
+rbind(v)
+rbind(v^2, log(v))
+
+apply(WorldPhones, 1, sum)  \textgray{# within row}
+apply(mtcars, 2, max)       \textgray{# within column}
+
+a <- list(rivers=rivers, islands=islands, precip=precip)
+sapply(mtcars, max)         \textgray{# within element}
+sapply(a, median)           \textgray{# within element}
+
+t(WorldPhones)
+\end{semiverbatim}
+\vspace{4ex}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Aggregate and crosstab}
+\begin{lstlisting}
+aggregate(hp~cyl, data=mtcars, mean)
+
+
+z <- aggregate(qsec~cyl+am, data=mtcars, mean)
+xtabs(qsec~cyl+am, data=z)
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\blue Data Objects}\\
+  \comment{numbers, strings, vectors, tables}\\[4ex]
+  \textbf{\blue Special Objects}\\
+  \comment{lists, date/time, formula}\\[4ex]
+  \textbf{\blue Information}\\
+  \comment{class, dimensions, names}\\[4ex]
+  \textbf{\blue Manipulation}\\
+  \comment{subset, round, aggregate}\\[2ex]
+\end{frame}
+
+\end{document}
