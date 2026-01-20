@@ -1,0 +1,80 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{generic}
+\begin{document}
+
+\begin{frame}
+  \title{\vspace{-2ex}\darkblue Importing Data from Excel into R}
+  \author{\vspace{-16ex}\normalsize Arni Magnusson}
+  \date{\vspace{-3ex}
+    {\darkgreen\it Statistical Modeling in R}\\[0.5ex]
+    Universidad de Concepción\\[0.5ex]
+    19\h{0.2ex}--\h{0.1ex}23 January 2026}
+  \titlepage
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\blue Exporting from Excel to Text File}\\
+  \comment{save, copy, txt, csv}\\[5ex]
+  \textbf{\blue R Packages to Read Directly from Excel}\\
+  \comment{openxlsx, readxl, tidyxl, XLConnect, xlsx}\\[5ex]
+  \textbf{\blue Issues}\\
+  \comment{multiple tables, sheets, formulas, table location, table
+    layout}\\[5ex]
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Exporting from Excel to Text File}
+  \textbf{\blue Save}\\
+  \begin{itemize}
+    \item[] Export from Excel to text file
+    \item[] Works if the Excel data has a simple format
+    \item[] Open the file in text editor to see how it looks\\[4ex]
+  \end{itemize}
+  \textbf{\blue Copy}\\
+  \begin{itemize}
+    \item[] Clean up in text editor, then save as text file
+    \item[] Sometimes necessary when exporting directly does not work\\[4ex]
+  \end{itemize}
+  \textbf{\blue Text file format}
+  \begin{itemize}
+    \item[] CSV (comma-separated values) is often the best text file format
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{R Packages to Read Directly from Excel}
+  \qquad
+  \begin{tabular}{lrrl}
+    \hline
+    Package         & Dependencies & Downloads & Commentary                \\
+    \hline
+    \blue openxlsx  &            3 &       375 & minimal dependencies      \\
+    \blue readxl    &           18 &       726 & many dependencies, tibble \\
+    \blue tidyxl    &            2 &      1431 & cumbersome for rectangular\\
+    \blue XLConnect &     Java + 1 &         4 & recognizes table object   \\
+    \blue xlsx      &     Java + 2 &        29 & intermediate functionality\\
+    \hline
+  \end{tabular}
+  ~\\[4ex]
+  \gray Downloads = thousands of downloads per month
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Issues}
+  \begin{itemize}
+    \item[] multiple tables\\[3ex]
+    \item[] sheets\\[3ex]
+    \item[] formulas\\[3ex]
+    \item[] table location\\[3ex]
+    \item[] table layout\\[3ex]
+  \end{itemize}
+\end{frame}
+
+\end{document}
