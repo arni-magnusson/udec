@@ -15,6 +15,7 @@ library(dplyr)
 
 aswell1 <- aswell1 |> gather(Treatment, Measurement, -c(Tiempo)) 
 
+
 aswell1 |> 
   mutate(
     Replicate = rep(rep(c(1,2,3), each = nrow(aswell1)/9), 3),
