@@ -1,0 +1,134 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{generic}
+\newcommand\cpp{\mbox{C\raisebox{0.5ex}{\tiny\bfseries ++}}}
+\begin{document}
+
+\begin{frame}
+  \title{\vspace{-2ex}\darkblue File Input/Output}
+  \author{\vspace{-16ex}\normalsize Arni Magnusson}
+  \date{\vspace{-3ex}
+    {\darkgreen\it Statistical Modeling in R}\\[0.5ex]
+    Universidad de Concepción\\[0.5ex]
+    19\h{0.2ex}--\h{0.1ex}23 January 2026}
+  \titlepage
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\blue Read and Write Data}\\
+  \comment{text files, R binary files, zip files}\\[4ex]
+  \textbf{\blue Good Practices}\\
+  \comment{CSV, RDS, relative path, filenames}\\[4ex]
+  \textbf{\blue Online Files}\\
+  \comment{read directly, download}\\[4ex]
+  \textbf{\blue Database Connections}\\
+  \comment{DBI, RODBC, MSSQL}\\[2ex]
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Read and write data}
+  \textbf{\blue Text files}\\[1ex]
+  \quad\begin{tabular}{ll}
+    \tt read.table &~ \tt write.table\\
+    \tt read.csv   &~ \tt write.csv  \\
+  \end{tabular}
+  ~\\[5ex]
+  \textbf{\blue R binary files}\\[1ex]
+  \quad\begin{tabular}{ll}
+    \tt load    &~ \tt save   \\
+    \tt readRDS &~ \tt saveRDS\\
+  \end{tabular}
+  ~\\[5ex]
+  \textbf{\blue Zip files}\\[1ex]
+  \quad\begin{tabular}{l}
+    \tt unzip
+  \end{tabular}
+  ~\\[1ex]
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Good practices}
+  \textbf{\blue CSV} ~ {\gray\it comma-separated values}\\[1ex]
+  \begin{itemize}
+    \item[] For tabular data\\
+    \item[] Easy to open as spreadsheet for non-technical users\\[4ex]
+  \end{itemize}
+  ~\\[1ex]
+  \textbf{\blue RDS}\\[1ex]
+  \begin{itemize}
+    \item[] Non-tabular data\\
+    \item[] One object in one file\\
+    \item[] No danger of overwriting objects in workspace\\
+    \item[] No confusion over what objects were imported\\
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Good practices}
+  \textbf{\blue Relative path}\\[0.5ex]
+  \begin{itemize}
+    \item[] {\tt data/numbers.csv}\\
+    \item[] {\tt ../data/numbers.csv}\\[2ex]
+    \item[] {\orange Not~}
+    {\darkgray\tt c:/my/personal/path/data/numbers.csv}\\[0.2ex]
+    which would prevent other people from running the analysis
+  \end{itemize}
+  ~\\[1ex]
+  \textbf{\blue Filenames}\\[0.5ex]
+  \begin{itemize}
+    \item[] Many operating systems are case-sensitive:\\[1ex]
+    \begin{tabular}{ll}
+      .R     & {\gray\it script}\\
+      .RData & {\gray\it many objects}\\
+      .rds   & {\gray\it one object}\\
+    \end{tabular}
+  \end{itemize}
+  \vspace{1ex}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Online files}
+\textbf{\blue Read directly}
+\vspace{-0.5ex}
+\begin{semiverbatim}
+  read.csv("https://example.com/numbers.csv")
+\end{semiverbatim}
+\vspace{6ex}
+\textbf{\blue Download}\\
+\vspace{-0.5ex}
+\begin{semiverbatim}
+  download.file("https://example.com/numbers.csv", "numbers.csv")
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Database connections}
+  \begin{description}
+    \item[DBI]{general package for RMySQL, RPostgreSQL, ROracle}\\[4ex]
+    \item[RODBC]{general package for ODBC connections}\\[4ex]
+    \item[MSSQL]{tools to work with Microsoft SQL Server Databases}\\[2ex]
+  \end{description}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\blue Read and Write Data}\\
+  \comment{text files, R binary files, zip files}\\[4ex]
+  \textbf{\blue Good Practices}\\
+  \comment{CSV, RDS, relative path, filenames}\\[4ex]
+  \textbf{\blue Online Files}\\
+  \comment{read directly, download}\\[4ex]
+  \textbf{\blue Database Connections}\\
+  \comment{DBI, RODBC, MSSQL}\\[2ex]
+\end{frame}
+
+\end{document}
