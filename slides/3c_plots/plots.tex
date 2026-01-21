@@ -1,0 +1,223 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{generic}
+\begin{document}
+
+\begin{frame}
+  \title{\vspace{-2ex}\darkblue Base plots}
+  \author{\vspace{-16ex}\normalsize Arni Magnusson}
+  \date{\vspace{-3ex}
+    {\darkgreen\it Statistical Modeling in R}\\[0.5ex]
+    Universidad de Concepción\\[0.5ex]
+    19\h{0.2ex}--\h{0.1ex}23 January 2026}
+  \titlepage
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\blue Plot Types}\\
+  \comment{plot, barplot, hist, boxplot}\\[2ex]
+  \textbf{\blue Interface}\\
+  \comment{vectors, formula, special object}\\[2ex]
+  \textbf{\blue Annotation}\\
+  \comment{points, lines, text, legend}\\[2ex]
+  \textbf{\blue Details}\\
+  \comment{axis, symbols, color, size, multipanel}\\[2ex]
+  \textbf{\blue Devices}\\
+  \comment{aspect ratio, pdf, png}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Plot types}
+  \blue\verb|plot(x, y)|\black
+  \begin{itemize}
+    \item[] \verb|plot(cars$speed, cars$dist)|\\[3ex]
+  \end{itemize}
+  \blue\verb|barplot(x)|\black
+  \begin{itemize}
+    \item[] \verb|barplot(cars$dist)|\\[3ex]
+  \end{itemize}
+  \blue\verb|hist(x)|\black
+  \begin{itemize}
+    \item[] \verb|hist(cars$dist)|\\[3ex]
+  \end{itemize}
+  \blue\verb|boxplot(x)|\black
+  \begin{itemize}
+    \item[] \verb|boxplot(cars$dist)|
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Plot interface}
+  \textblue{\lstinline|plot(x, y)|}
+  \begin{itemize}
+    \item[] \lstinline|plot(cars$speed, cars$dist)|\\[3ex]
+  \end{itemize}
+  \textblue{\lstinline|plot(y~x, data=obj)|}
+  \begin{itemize}
+    \item[] \lstinline|plot(dist~speed, data=cars)|\\[3ex]
+  \end{itemize}
+  \textblue{\lstinline|plot(obj)|}
+  \begin{itemize}
+    \item[] \lstinline|plot(cars)  | \textgray{\lstinline{# data frame}}
+    \item[] \lstinline|cars.lm <- lm(dist~speed, data=cars)|
+    \item[] \lstinline|par(mfrow=c(2,2))|
+    \item[] \lstinline|plot(cars.lm)  | \textgray{\lstinline{# lm}}
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Plot annotation}
+\begin{semiverbatim}
+points(x, y)
+
+
+lines(x, y)
+
+
+abline(a, b)
+abline(obj)
+abline(h)
+abline(v)
+
+
+text(x, y, label)
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Plot details}
+  \begin{tabular}{ll}
+    \blue\verb|main   xlab   ylab     | & label      \\[1.5ex]
+    \blue\verb|xlim   ylim            | & axis limits\\[1.5ex]
+    \blue\verb|lty    lwd             | & line       \\[1.5ex]
+    \blue\verb|pch                    | & symbol     \\[1.5ex]
+    \blue\verb|col                    | & color      \\[1.5ex]
+    \blue\verb|cex                    | & size       \\[1.5ex]
+    \blue\verb|type                   | & type       \\
+  \end{tabular}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Color}
+  \textblue{Name}\\[1ex]
+  Specify color name:\\[-0.5ex]
+  \begin{itemize}
+    \item[] \verb|barplot(1, col="darkgreen")|\\[0.5ex]
+  \end{itemize}
+  Show all recognized color names:\\[-0.5ex]
+  \begin{itemize}
+    \item[] \verb|colors()|\\[3ex]
+  \end{itemize}
+  \textgreen{Number}\\[1ex]
+  Select color from the default palette of 8 colors:\\[-0.5ex]
+  \begin{itemize}
+    \item[] \verb|barplot(1, col=2)|\\[0.5ex]
+  \end{itemize}
+  Show full palette:\\[-0.5ex]
+  \begin{itemize}
+    \item[] \verb|barplot(rep(1,8), names=1:8, col=1:8)|
+    \vspace{-0.5ex}
+    \item[] \verb|palette()|\\[1ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Graphical parameters}
+  \textblue{Complete list of all graphical parameters}
+\begin{semiverbatim}
+?par
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Graphical parameters}
+\begin{semiverbatim}
+plot(c(1,10), c(1,100),
+     main="title", xlab="x", ylab="y",
+     xlim=c(0,20), ylim=c(0,120),
+     pch=2, lwd=5, col="orange", cex=2)
+
+
+lines(c(5,15), c(50,60), lty=2, lwd=5, col="purple")
+
+
+text(10, 20, "here", col="brown")
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Multipanel}
+  \textblue{Rows and columns}
+\begin{semiverbatim}
+par(mfrow=c(2,3))
+
+plot(0, main=1)
+plot(0, main=2)
+plot(0, main=3)
+plot(0, main=4)
+plot(0, main=5)
+plot(0, main=6)
+
+par(mfrow=c(1,1))
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Devices}
+  \textblue{Write plot to file (vector graphics)}
+\begin{semiverbatim}
+pdf("figure_1.pdf")
+plot(cars)
+dev.off()
+\end{semiverbatim}
+  \vspace{6ex}
+  \textblue{Write plot to file (bitmap)}
+\begin{semiverbatim}
+png("figure_2.png")
+plot(cars)
+dev.off()
+\end{semiverbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Aspect ratio}
+  \textblue{Boxplots can be narrow}
+\begin{lstlisting}
+boxplot(count~spray, data=InsectSprays)
+\end{lstlisting}
+  \vspace{6ex}
+  \textblue{Scatterplots can show trend at $45^\circ$ banking}
+\begin{lstlisting}
+plot(sunspots)
+\end{lstlisting}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\blue Plot Types}\\
+  \comment{plot, barplot, hist, boxplot}\\[2ex]
+  \textbf{\blue Interface}\\
+  \comment{vectors, formula, special object}\\[2ex]
+  \textbf{\blue Annotation}\\
+  \comment{points, lines, text, legend}\\[2ex]
+  \textbf{\blue Details}\\
+  \comment{axis, symbols, color, size, multipanel}\\[2ex]
+  \textbf{\blue Devices}\\
+  \comment{aspect ratio, pdf, png}
+\end{frame}
+
+\end{document}
