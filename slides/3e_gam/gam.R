@@ -5,7 +5,7 @@ abline(model.lm)
 summary(model.lm)
 
 ## Fit GAM to data
-require(mgcv)
+library(mgcv)
 model.gam <- gam(mpg~s(hp), data=mtcars)
 xvec <- seq(min(mtcars$hp), max(mtcars$hp))
 y.gam <- predict(model.gam, data.frame(hp=xvec))
