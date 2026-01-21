@@ -1,0 +1,118 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{generic}
+\newcommand\cpp{\mbox{C\raisebox{0.5ex}{\tiny\bfseries ++}}}
+\begin{document}
+
+\begin{frame}
+  \title{\vspace{-2ex}\darkblue R Packages}
+  \author{\vspace{-16ex}\normalsize Arni Magnusson}
+  \date{\vspace{-3ex}
+    {\darkgreen\it Statistical Modeling in R}\\[0.5ex]
+    Universidad de Concepción\\[0.5ex]
+    19\h{0.2ex}--\h{0.1ex}23 January 2026}
+  \titlepage
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\blue Base Packages}\\
+  \comment{base, datasets, graphics, stats, mgcv, nlme, lattice}\\[4ex]
+  \textbf{\blue Tidyverse Packages}\\
+  \comment{ggplot2, dplyr, tidyr, tibble, magrittr, readr, stringr,
+    lubridate}\\[4ex]
+  \textbf{\blue Other Packages}\\
+  \comment{TMB, RTMB, glmmTMB, lme4, remotes, Rcpp, rmarkdown, knitr,
+    data.table, roxygen2}\\[4ex]
+  \textbf{\blue Repositories and Community}\\
+  \comment{CRAN, Task Views, GitHub, R Scholar}\\[2ex]
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Base packages}
+  \begin{description}
+    \item[\blue\bf base] ~ programming language\\[2ex]
+    \item[\blue\bf datasets] ~ example data objects\\[2ex]
+    \item[\blue\bf graphics] ~ base plots\\[2ex]
+    \item[\blue\bf stats] ~ tests, linear models, optimization\\[2ex]
+    \item[\blue\bf mgcv] ~ additive models\\[2ex]
+    \item[\blue\bf nlme] ~ mixed effects models\\[2ex]
+    \item[\blue\bf lattice] ~ multipanel and composite plots\\[2ex]
+    \item[\blue\bf \dots] ~ \\[2ex]
+  \end{description}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Tidyverse packages}
+  \begin{description}
+    \item[\green\bf ggplot2] ~ plots\\[1.5ex]
+    \item[\green\bf dplyr] ~ data manipulation\\[1.5ex]
+    \item[\green\bf tidyr] ~ reshape\\[1.5ex]
+    \item[\green\bf tibble] ~ data frame\\[1.5ex]
+    \item[\green\bf magrittr] ~ pipe\\[1.5ex]
+    \item[\green\bf readr] ~ import\\[1.5ex]
+    \item[\green\bf stringr] ~ strings\\[1.5ex]
+    \item[\green\bf lubridate] ~ dates\\[1.5ex]
+    \item[\green\bf \dots] ~ \\[2ex]
+  \end{description}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Other packages}
+  \begin{description}
+    \item[\orange\bf TMB] ~ nonlinear models\\[1.2ex]
+    \item[\orange\bf RTMB] ~ TMB interface\\[1.2ex]
+    \item[\orange\bf glmmTMB] ~ generalized linear mixed models\\[1.2ex]
+    \item[\orange\bf lme4] ~ mixed effects models\\[1.2ex]
+    \item[\orange\bf remotes] - install package from GitHub\\[1.2ex]
+    \item[\orange\bf Rcpp] ~ \cpp\ interface\\[1.2ex]
+    \item[\orange\bf rmarkdown] ~ dynamic documents\\[1.2ex]
+    \item[\orange\bf knitr] ~ dynamic documents\\[1.2ex]
+    \item[\orange\bf data.table] ~ data frame\\[1.2ex]
+    \item[\orange\bf roxygen2] ~ write help pages\\[2ex]
+  \end{description}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Repositories and community}
+  \textbf{\blue CRAN}\\
+  \begin{itemize}
+    \item[] \blue\url{https://cran.r-project.org} \qquad\quad\,
+    {\it\gray packages, sorted by name}\\
+    \item[] \blue\url{https://cran.r-project.org/web/views/} \qquad
+    {\it\gray sorted by topic}\\[6ex]
+  \end{itemize}
+  \textbf{\green GitHub}\\
+  \begin{itemize}
+    \item[] {\blue\url{https://github.com}}\\
+    \item[] \verb|install_github(owner/repo)| \qquad\quad~
+    \it\gray remotes package\\[6ex]
+  \end{itemize}
+  \textbf{\orange R Scholar}
+  \begin{itemize}
+    \item[] \blue\url{https://rscholar.com}\\[2ex]
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\blue Base Packages}\\
+  \comment{base, datasets, graphics, stats, mgcv, nlme, lattice}\\[4ex]
+  \textbf{\blue Tidyverse Packages}\\
+  \comment{ggplot2, dplyr, tidyr, tibble, magrittr, readr, stringr,
+    lubridate}\\[4ex]
+  \textbf{\blue Other Packages}\\
+  \comment{TMB, RTMB, glmmTMB, lme4, remotes, Rcpp, rmarkdown, knitr,
+    data.table, roxygen2}\\[4ex]
+  \textbf{\blue Repositories and Community}\\
+  \comment{CRAN, Task Views, GitHub, R Scholar}\\[2ex]
+\end{frame}
+
+\end{document}
