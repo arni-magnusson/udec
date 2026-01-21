@@ -1,0 +1,63 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{generic}
+\begin{document}
+
+\begin{frame}
+  \title{\vspace{-2ex}\darkblue Mixed Effects Models}
+  \author{\vspace{-16ex}\normalsize Arni Magnusson}
+  \date{\vspace{-3ex}
+    {\darkgreen\it Statistical Modeling in R}\\[0.5ex]
+    Universidad de Concepción\\[0.5ex]
+    19\h{0.2ex}--\h{0.1ex}23 January 2026}
+  \titlepage
+\end{frame}
+
+% ______________________________________________________________________________
+
+\section{Mixed effects}
+\subsection{LME}
+\begin{frame}{Pinheiro and Bates 2000}
+  \includegraphics[height=0.7\textheight]{pinbates}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Linear mixed effects}
+  Analysis of covariance (pp. 30--41)\\[5ex]
+  \begin{tabular}{lll}
+    LM
+    & $y_{ij} \;=\; \beta_{0i} \;+\; \beta_1 x_{ij} \;+\; \epsilon_{ij}$
+    & $\epsilon_{ij} \sim N(0,\sigma^2)$\\[8ex]
+    LME~~~
+    & $y_{ij} \;=\; \beta_0\;+\;b_i \;+\;\beta_1 x_{ij}\;+\;\epsilon_{ij}$~~~
+    & $b_i \sim N(0,\sigma_b^2)$\\[2ex]
+    &&$\epsilon_{ij} \sim N(0,\sigma^2)$\\
+  \end{tabular}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\subsection{NLME}
+\begin{frame}{Nonlinear mixed effects}
+  Logistic growth model (pp. 338--350 and 354--362)\\[2ex]
+  \begin{displaymath}
+    y_{ij} \;=\; \frac{\phi_1\;+\;b_i}
+    {1\;+\;\exp[-(t_{ij}-\phi_2)/\phi_3]} \;+\; \varepsilon_{ij}
+  \end{displaymath}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\subsection{GLMM}
+\begin{frame}{Generalized linear mixed effects}
+  Poisson, negative binomial, zero inflation, etc.\\[5ex]
+  \textblue{Paper}\\
+  \qquad\url{https://doi.org/10.32614/RJ-2017-066}\\[3ex]
+  \textblue{Package}\\
+  \qquad\url{https://cran.r-project.org/package=glmmTMB}
+
+\end{frame}
+
+\end{document}
