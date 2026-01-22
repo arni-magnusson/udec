@@ -1,0 +1,177 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{generic}
+\usepackage{ulem}
+\newcommand\cpp{\mbox{C\raisebox{0.5ex}{\tiny\bfseries ++}}}
+\begin{document}
+
+\begin{frame}
+  \title{\vspace{-2ex}\darkblue Writing R functions}
+  \author{\vspace{-16ex}\normalsize Arni Magnusson}
+  \date{\vspace{-3ex}
+    {\darkgreen\it Statistical Modeling in R}\\[0.5ex]
+    Universidad de Concepción\\[0.5ex]
+    19\h{0.2ex}--\h{0.1ex}23 January 2026}
+  \titlepage
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\blue Functions}\\
+  \comment{arguments, function body, output, coding style}\\[5ex]
+  \textbf{\blue Objects}\\
+  \comment{atomic elements, arrays, composite objects, class}\\[5ex]
+  \textbf{\blue Control flow}\\
+  \comment{if, for, apply}\\[5ex]
+  \textbf{\blue Documentation}\\
+  \comment{header comments, roxygen, help pages}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Anatomy of a function}
+\begin{semiverbatim}
+\textgray{## Comment header}
+twice <- function(x)
+\{
+  out <- 2 * x
+  out
+\}
+\end{semiverbatim}
+  \vspace{2ex}
+  \green Arguments, function body, output, scope, coding style
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Objects in R}
+  \begin{columns}[T]
+    \column{0.4\textwidth}
+    \textblue{Atomic}
+    \begin{itemize}
+      \item[] integer\\
+      \item[] numeric (double)\\
+      \item[] character\\
+      \item[] logical\\[6ex]
+    \end{itemize}
+    \textblue{Composite}
+    \begin{itemize}
+      \item[] list
+      \item[] data.frame
+      \item[] special class
+    \end{itemize}
+    \column{0.4\textwidth}
+    \textblue{Arrays}
+    \begin{itemize}
+      \item[] vector
+      \item[] matrix
+      \item[] array
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{if}
+  \begin{columns}[T]
+    \column{0.4\textwidth}
+    \textblue{If construct}
+\begin{semiverbatim}
+if (cond) \{
+  ...
+\}
+
+
+if (cond) \{
+  ...
+\}
+else \{
+  ...
+\}
+\end{semiverbatim}
+    \column{0.4\textwidth}
+    \textblue{Conditions}
+\begin{semiverbatim}
+pi == 3
+pi != 3
+pi < 3
+pi <= 3
+
+A && B
+A || B
+!A
+
+is.na
+is.null
+\end{semiverbatim}
+    \vspace{1ex}
+  \end{columns}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{for, apply}
+  \begin{columns}[T]
+    \column{0.4\textwidth}
+    \textblue{For loops}
+\begin{semiverbatim}\small
+for (i in 1:10) \{
+  ...
+\}
+\end{semiverbatim}
+    \column{0.5\textwidth}
+    \textblue{Apply}
+\begin{lstlisting}[basicstyle=\tt\small]
+apply(tab, 2, mean)
+
+sapply(list, mean)
+
+tapply(vec, grp, mean)
+
+aggregate(vec~grp, mean)
+\end{lstlisting}
+    \vspace{1ex}
+  \end{columns}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{Documentation}
+\begin{columns}[T]
+  \column{0.4\textwidth}
+  \textblue{Header comments}
+\begin{semiverbatim}
+\textgray{## Purpose}
+\textgray{## Input}
+\textgray{## Output}
+foo <- function(...)
+\end{semiverbatim}
+  \column{0.4\textwidth}
+  \textblue{Roxygen comments}
+\begin{semiverbatim}
+\textgray{#' Title}
+\textgray{#' Description}
+\textgray{#'} \textgreen{@param}
+\textgray{#'} \textgreen{@return}
+\textgray{#'} \textgreen{@examples}
+foo <- function(...)
+\end{semiverbatim}
+\end{columns}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\blue Functions}\\
+  \comment{arguments, function body, output, coding style}\\[5ex]
+  \textbf{\blue Objects}\\
+  \comment{atomic elements, arrays, composite objects, class}\\[5ex]
+  \textbf{\blue Control flow}\\
+  \comment{if, for, apply}\\[5ex]
+  \textbf{\blue Documentation}\\
+  \comment{header comments, roxygen, help pages}
+\end{frame}
+
+\end{document}
