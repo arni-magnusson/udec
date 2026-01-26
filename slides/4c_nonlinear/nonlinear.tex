@@ -1,0 +1,62 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{generic}
+\renewcommand{\max}{_\mathsf{\;\!max}}
+\begin{document}
+
+\begin{frame}
+  \title{\vspace{-2ex}\darkblue Nonlinear Models}
+  \author{\vspace{-16ex}\normalsize Arni Magnusson}
+  \date{\vspace{-3ex}
+    {\darkgreen\it Statistical Modeling in R}\\[0.5ex]
+    Universidad de Concepción\\[0.5ex]
+    19\h{0.2ex}--\h{0.1ex}23 January 2026}
+  \titlepage
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{Recruitment}\\[0.5ex]
+  \begin{itemize}
+    \item[] Beverton-Holt\\[1ex]
+    \item[] Ricker
+  \end{itemize}
+  \vspace{6ex}
+  \textbf{Growth}\\[0.5ex]
+  \begin{itemize}
+    \item[] von Bertalanffy
+  \end{itemize}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Beverton-Holt recruitment}
+  \begin{eqnarray*}
+    (1)\qquad\qquad \hat R &=& R\max\;\frac{S}{S+S_{50}} \h{40ex}\\[4ex]
+    (2)\qquad\qquad \hat R &=& \frac{S}{a+bS}\\[4ex]
+    (3)\qquad\qquad \hat R &=& \frac{aS}{1+bS}\\[4ex]
+    (4)\qquad\qquad \hat R &=& \frac{aS}{1+S/b}\\[3ex]
+  \end{eqnarray*}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Ricker recruitment}
+  \begin{eqnarray*}
+    (1)\qquad\qquad \hat R &=& R\max \,\times\, \frac{S}{S\max} \,\times\,
+    exp\left(1-\frac{S}{S\max}\right)\\[3em]
+    (2)\qquad\qquad \hat R &=& aSe^{-bS}
+  \end{eqnarray*}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{von Bertalanffy growth}
+  \begin{eqnarray*}
+    \hat L_a &=& L_\infty \Big(1-e^{-K(a-t0)}\Big)
+  \end{eqnarray*}
+\end{frame}
+
+\end{document}
