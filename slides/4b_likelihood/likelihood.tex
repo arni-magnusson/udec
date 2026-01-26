@@ -1,0 +1,260 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{generic}
+\renewcommand{\|}{\ensuremath{\:\!|\:\!}}
+\newcommand{\data}{\ensuremath{\mathsf{data}}}
+\begin{document}
+
+\begin{frame}
+  \title{\vspace{-2ex}\darkblue Likelihood}
+  \author{\vspace{-16ex}\normalsize Arni Magnusson}
+  \date{\vspace{-3ex}
+    {\darkgreen\it Statistical Modeling in R}\\[0.5ex]
+    Universidad de Concepción\\[0.5ex]
+    19\h{0.2ex}--\h{0.1ex}23 January 2026}
+  \titlepage
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\blue Likelihood}\\
+  \comment{relative probability, support, combine data sources}\\[4ex]
+  \textbf{\blue Estimation}\\
+  \comment{MLE, log likelihood, confidence interval}\\[4ex]
+  \textbf{\blue Normal distribution}\\
+  \comment{$N(\mu,\sigma)$, dnorm}\\[4ex]
+  \textbf{\blue Profile likelihood}\\
+  \comment{procedure, uncertainty}\\[3ex]
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Likelihood concepts}
+  \textblue{\textbf{Relative} probability}\\[6ex]
+  \begin{tabular}{lll}
+    \quad$P(A_1)=0.5$   & $P(A_2)=0.3$   & $P(A_3)=0.2$  \\[5ex]
+    \quad$L(A_1)=500$   & $L(A_2)=300$   & $L(A_3)=200$  \\[3ex]
+    \quad$L(A_1)=0.005$ & $L(A_2)=0.003$ & $L(A_3)=0.002$\\[6ex]
+  \end{tabular}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Likelihood concepts}
+  \vspace{0.9ex}
+  \hspace{-1.25ex}\begin{tabular}{ll}
+    \textblue{Expresses how well the data \textbf{support}}\hspace{-1.7ex}
+    & \textblue{some parameter value}\\
+    & \textblue{or hypothesis}
+  \end{tabular}\\
+  {\LARGE
+    \begin{displaymath}
+      \qquad\qquad L\,(\:\!\theta\|\data)
+    \end{displaymath}}\\[8ex]
+  \textgray{Like $RSS$ but even more useful:\\[0.5ex]
+    \qquad not only point estimate, but also \textbf{uncertainty}}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Likelihood concepts}
+  \vspace{-3.4ex}
+  \textblue{We can fit a model to many types of data at once and\\
+    \textbf{combine} the likelihood components with simple
+    multiplication}\\
+  {\Large
+    \begin{displaymath}
+      L \quad=\quad L_1 \;\;\times\;\; L_2 \;\;\times\;\; \cdots
+    \end{displaymath}}\\[6ex]
+  \textgray{Unified framework, for simple or complex models}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Likelihood concepts}
+  \vspace{1.5ex}
+  \textblue{\textbf{Choose} between models with different number of
+    parameters}\\
+  \begin{eqnarray*}
+    2\log \frac{\:L_1\,}{L_0} &\sim& \chi^2_{\Delta df}           \\[6ex]
+    \mathsf{AIC}              &=&    -2\log L \;+\; 2k            \\[6ex]
+    \mathsf{BIC}              &=&    -2\log L \;+\; \log(\:\!\!n)k
+  \end{eqnarray*}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Maximum likelihood estimation}
+  \vspace{3ex}
+  \begin{figure}
+    \includegraphics{max}
+  \end{figure}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Log likelihood}
+  \vspace{1ex}
+  \textblue{\textbf{Log} transformation makes things easier}\\[-1ex]
+  \begin{eqnarray*}
+    L\,(\theta\|\data) &=& p\,(\data\|\theta)\\[1.5ex]
+    && p\,(\:\!y_1,\dots,y_n\|\theta)\\[1.5ex]
+    && p\,(\:\!y_1\|\theta)\;\;\times\;\;\cdots\;\;\times\;\;
+    p\,(\:\!y_n\|\theta)\\[2ex]
+    && \prod\,p\,(\:\!y_i\|\theta)\\[5ex]
+    \log L\,(\theta\|\data) &=& \sum\,\log p\,(\:\!y_i\|\theta)
+  \end{eqnarray*}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Log likelihood}
+  \begin{columns}
+    \column{0.31\textwidth} \includegraphics[height=0.5\textheight]{small-1}
+    \column{0.31\textwidth} \includegraphics[height=0.5\textheight]{small-2}
+    \column{0.31\textwidth} \includegraphics[height=0.5\textheight]{small-3}
+  \end{columns}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Confidence interval}
+  \begin{figure}
+    \includegraphics{conf-1}
+  \end{figure}
+  \footnotesize
+  \hfill\phantom{$0.5\chi^2_{df=1} = 1.92$ for 95\% confidence interval}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Confidence interval}
+  \begin{figure}
+    \includegraphics{conf-2}\\[0ex]
+  \end{figure}
+  \footnotesize
+  \hfill\phantom{$0.5\chi^2_{df=1} = 1.92$ for 95\% confidence interval}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Confidence interval}
+  \begin{figure}
+    \includegraphics{conf-3}
+  \end{figure}
+  \footnotesize
+  \hfill\phantom{$0.5\chi^2_{df=1} = 1.92$ for 95\% confidence interval}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Confidence interval}
+  \begin{figure}
+    \includegraphics{conf-4}
+  \end{figure}
+  \footnotesize
+  \hfill\phantom{$0.5\chi^2_{df=1} = 1.92$ for 95\% confidence interval}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Confidence interval}
+  \begin{figure}
+    \includegraphics{conf-5}
+  \end{figure}
+  \footnotesize
+  \hfill\phantom{$0.5\chi^2_{df=1} = 1.92$ for 95\% confidence interval}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Confidence interval}
+  \begin{figure}
+    \includegraphics{conf-5}
+  \end{figure}
+  \footnotesize
+  \hfill\textblue{$0.5\chi^2_{df=1} = 1.92$ for 95\% confidence interval}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Normal distribution}
+  \vspace{-3ex}
+  \begin{eqnarray*}
+    f(x) &=& \frac{1}{\sigma\sqrt{2\pi}}
+    \;\;e^{-\frac{(x-\mu)^2}{2\sigma^2}}                       \\[2ex]
+    p(y_i\|\theta) &=& \frac{1}{\sigma\sqrt{2\pi}}\;\;
+    e^{-\frac{(y_i-\mu_i)^2}{2\sigma^2}}                       \\[2ex]
+    L(\theta\|y)   &=& \prod\left(\frac{1}{\sigma\sqrt{2\pi}}
+      \;\;e^{-\frac{(y_i-\mu_i)^2}{2\sigma^2}}\right)          \\[2ex]
+    -\log L        &=& \big[\;\!0.5n\log(2\pi)\big] \quad+\quad
+    n\log\sigma \quad+\quad \frac{\sum(y_i-\mu_i)^2}{2\sigma^2}\\[2ex]
+    ~              &=& \big[\;\!0.5n\log(2\pi)\big] \quad+\quad
+    n\log\sigma \quad+\quad \frac{RSS}{2\sigma^2}
+  \end{eqnarray*}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{dnorm in R}
+  \begin{verbatim}
+  L <- prod(dnorm(y, mu, sigma))
+  \end{verbatim}\vspace{1ex}
+  \begin{verbatim}
+  neglogL <- -sum(dnorm(y, mu, sigma, log=TRUE))
+  \end{verbatim}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}[fragile]{dnorm in R}
+  \begin{tabular}{ccc}
+    \includegraphics[height=0.5\textheight]{small-1} &
+    \includegraphics[height=0.5\textheight]{small-2} &
+    \includegraphics[height=0.5\textheight]{small-3}\\[2ex]
+    \blue\scriptsize\verb|    dnorm(theta,|          &
+    \blue\scriptsize\verb|dnorm(theta,         |     &
+    \blue\scriptsize\verb|-dnorm(theta,        |    \\[-0.5ex]
+    \blue\scriptsize\verb|    m=150, s=10)|          &
+    \blue\scriptsize\verb| m=150, s=10, log=TRUE)|   &
+    \blue\scriptsize\verb|  m=150, s=10, log=TRUE)|
+  \end{tabular}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Profile likelihood}
+  \vspace{1ex}
+  \begin{enumerate}
+    \item Fix $\theta$ (a parameter of interest) at some value\\[2em]
+    \item Minimize $-\:\!\!\log L\,$ by estimating all other parameters\\[2em]
+    \item Save this value of $-\:\!\!\log L$\\[4em]
+  \end{enumerate}
+  \textblue{Repeat over a range of $\theta$ values}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Profile likelihood}
+  \vspace{3ex}
+  \begin{figure}
+    \includegraphics{max}
+  \end{figure}
+\end{frame}
+
+% ______________________________________________________________________________
+
+\begin{frame}{Outline}
+  \textbf{\blue Likelihood}\\
+  \comment{relative probability, support, combine data sources}\\[4ex]
+  \textbf{\blue Estimation}\\
+  \comment{MLE, log likelihood, confidence interval}\\[4ex]
+  \textbf{\blue Normal distribution}\\
+  \comment{$N(\mu,\sigma)$, dnorm}\\[4ex]
+  \textbf{\blue Profile likelihood}\\
+  \comment{procedure, uncertainty}\\[3ex]
+\end{frame}
+
+\end{document}
